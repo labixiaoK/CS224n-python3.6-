@@ -59,7 +59,7 @@ class StanfordSentiment:
                     continue
 
                 splitted = line.strip().split()[1:]
-                # Deal with some peculiar encoding issues with this file
+                # no deal--(Deal with some peculiar encoding issues with this file)
                 sentences += [[w.lower() for w in splitted]]
 
         self._sentences = sentences
@@ -142,6 +142,7 @@ class StanfordSentiment:
         for i in range(self.numSentences()):
             sentence = sentences[i]
             full_sent = " ".join(sentence).replace('-lrb-', '(').replace('-rrb-', ')')
+            #avoid key error(drop some sentence which are not in dictionary)
             if full_sent in dictionary.keys():              
                 sent_labels[i] = labels[dictionary[full_sent]]
 
